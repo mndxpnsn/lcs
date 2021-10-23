@@ -19,14 +19,15 @@ std::string lcs(std::string x, std::string y, m_table** memo_table) {
     int length_y = (int) y.length();
     
     std::string result;
-    
-    //Get results from memo table if available
-    if(memo_table[length_x - 1][length_y - 1].is_set) {
-        return memo_table[length_x - 1][length_y - 1].str;
-    }
 
     //Compute longest common subsequence of substring
     if(length_x > 0 && length_y > 0) {
+        
+        //Get results from memo table if available
+        if(memo_table[length_x - 1][length_y - 1].is_set) {
+            return memo_table[length_x - 1][length_y - 1].str;
+        }
+        
         if(x[length_x - 1] != y[length_y - 1]) {
             std::string x_substr = x.substr(0, length_x - 1);
             std::string y_substr = y.substr(0, length_y - 1);
@@ -101,12 +102,14 @@ std::string longest_common_subs(std::string x, std::string y) {
 
 int main(int argc, const char * argv[]) {
     
-    std::string x = "ABCBDABABA";
-    std::string y = "BDCABAABA";
+    std::string x = "ACCGGTCGAGTGCGCGGAAGCCGGCCGAA";
+    std::string y = "GTCGTTCGGAATGCCGTTGCTCTGTAAA";
+    std::string ref = "GTCGTCGGAAGCCGGCCGAA";
     
     std::string lcs = longest_common_subs(x, y);
     
     std::cout << lcs << std::endl;
+    std::cout << ref << std::endl;
     std::cout << "done" << std::endl;
     
     return 0;
