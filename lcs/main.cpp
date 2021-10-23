@@ -102,12 +102,15 @@ std::string longest_common_subs(std::string x, std::string y) {
 
 int main(int argc, const char * argv[]) {
     
+    //Input
     std::string x = "ACCGGTCGAGTGCGCGGAAGCCGGCCGAA";
     std::string y = "GTCGTTCGGAATGCCGTTGCTCTGTAAA";
     std::string ref = "GTCGTCGGAAGCCGGCCGAA";
     
+    //Compute longest comon subsequence
     std::string lcs = longest_common_subs(x, y);
     
+    //Print results
     std::cout << lcs << std::endl;
     std::cout << ref << std::endl;
     std::cout << "done" << std::endl;
