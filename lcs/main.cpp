@@ -111,6 +111,8 @@ int main(int argc, const char * argv[]) {
     std::string lcs = longest_common_subs(x, y);
     
     //Print results
+    bool results_match = lcs == ref;
+    std::cout << "results: match: " << results_match << std::endl;
     std::cout << lcs << std::endl;
     std::cout << ref << std::endl;
     std::cout << "done" << std::endl;
