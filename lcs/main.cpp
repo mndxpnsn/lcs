@@ -38,19 +38,14 @@ std::string lcs(std::string x, std::string y, m_table** memo_table) {
             int length_str1 = (int) str1.length();
             int length_str2 = (int) str2.length();
             
-            if(length_str1 > length_str2) {
-                result = result + str1;
-            }
-            else {
-                result = result + str2;
-            }
+            if(length_str1 > length_str2) { result = str1; }
+            else { result = str2; }
         }
         
         if(x[length_x - 1] == y[length_y - 1]) {
             std::string x_substr = x.substr(0, length_x - 1);
             std::string y_substr = y.substr(0, length_y - 1);
-            result = result + x[length_x - 1];
-            result = result + lcs(x_substr, y_substr, memo_table);
+            result = lcs(x_substr, y_substr, memo_table) + x[length_x - 1];
         }
         
         //Add results to memo table
@@ -67,12 +62,8 @@ std::string longest_common_subs(std::string x, std::string y) {
     int len2 = (int) y.length();
     
     //Compute max length input strings
-    if(len1 < len2) {
-        max_size = len2;
-    }
-    else {
-        max_size = len1;
-    }
+    if(len1 < len2) { max_size = len2; }
+    else { max_size = len1; }
     
     //Initialize memo table
     m_table** memo_table = new m_table*[max_size];
@@ -89,15 +80,7 @@ std::string longest_common_subs(std::string x, std::string y) {
     //Compute longest common subsequence
     std::string longest_cs = lcs(x, y, memo_table);
     
-    //Reverse results
-    std::string l_c_s = "";
-    int lcs_len = (int) longest_cs.length();
-    
-    for(int i = lcs_len - 1; i > -1; --i) {
-        l_c_s = l_c_s + longest_cs[i];
-    }
-    
-    return l_c_s;
+    return longest_cs;
 }
 
 int main(int argc, const char * argv[]) {
